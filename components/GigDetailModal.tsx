@@ -1,8 +1,9 @@
 import { Gig } from '@/lib/types';
 import { X } from 'lucide-react';
 import React from 'react';
-import Separator from './ui/Separator';
-import Badge from './ui/Badge';
+import Separator from '@/components/ui/Separator';
+import Badge from '@/components/ui/Badge';
+import Card from '@/components/ui/Card';
 
 interface GigDetailModalProps {
     gig: Gig | null;
@@ -36,8 +37,16 @@ export default function GigDetailModal({ gig, onClose }: GigDetailModalProps) {
                 </table>
                 <Separator />
                 <div>
-                    <h3 className="text-xl font-bold mt-4">Pricing Plans</h3>
-                   
+                    <h3 className="text-xl font-bold my-8">Pricing Plans</h3>
+                    <div className="space-y-4">
+                        {gig.gigpricingplans.map((plan, index) => (
+                            <Card key={index}>
+                                <h4 className="text-lg font-semibold text-primary uppercase">Plan {index + 1}</h4>
+                                <p className="text-gray-700 my-2"><span className="font-bold">Price:</span> {Number(plan.price_).toLocaleString('en-US', { style: 'currency', currency: 'KES' })}</p>
+                                <p className="text-gray-700"><span className="font-bold">Description:</span> {plan.description}</p>
+                            </Card>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
