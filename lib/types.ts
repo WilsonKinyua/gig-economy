@@ -53,7 +53,7 @@ export interface Faq {
   id: string;
 }
 
-export interface Gig {
+export interface Gig { // Gig type details
   id: string;
   name: string;
   slug: string;
