@@ -20,7 +20,7 @@ export default function GigDetailModal({ gig, onClose }: GigDetailModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            // onClick={onClose}
+        // onClick={onClose}
         >
             <motion.div
                 className="bg-white p-7 rounded-lg lg:max-w-4xl w-full max-h-full overflow-y-auto"
@@ -28,7 +28,7 @@ export default function GigDetailModal({ gig, onClose }: GigDetailModalProps) {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
             >
-                <X className="cursor-pointer float-right text-primary h-9 w-9" onClick={onClose} />
+                <X className="cursor-pointer float-right text-primary h-9 w-9 text-red-500" onClick={onClose} />
                 <h2 className="text-xl font-bold mb-4">{gig.name}</h2>
                 <Separator />
                 <table className="w-full">
@@ -60,6 +60,13 @@ export default function GigDetailModal({ gig, onClose }: GigDetailModalProps) {
                         ))}
                     </div>
                 </div>
+                <Separator />
+                <button
+                    className="bg-red-500 text-white px-4 py-2 rounded-lg uppercase mt-4 float-right"
+                    onClick={onClose}
+                >
+                    Close
+                </button>
             </motion.div>
         </motion.div>
     );
