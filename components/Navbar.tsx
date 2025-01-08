@@ -1,7 +1,6 @@
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
-import Button from '@/components/ui/Button';
 import Image from 'next/image';
 
 export default function Navbar() {
@@ -16,7 +15,9 @@ export default function Navbar() {
                     <Link href="#">About Us</Link>
                     <Link href="#">Services</Link>
                     <Link href="#">Contact</Link>
-                    <Button>Register</Button>
+                    <button className="bg-primary text-white px-4 py-2 rounded-lg transition duration-300 uppercase">
+                        Register
+                    </button>
                 </div>
                 <div className="md:hidden">
                     <Menu className='h-10 w-10' />
