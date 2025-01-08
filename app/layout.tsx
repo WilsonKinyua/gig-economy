@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gig",
+  title: "Gig Economy",
   description: "A simple app to find gigs",
 };
 
