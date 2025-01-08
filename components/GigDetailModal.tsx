@@ -14,8 +14,8 @@ export default function GigDetailModal({ gig, onClose }: GigDetailModalProps) {
     if (!gig) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-65 flex justify-center items-center">
-            <div className="bg-white p-7 rounded-lg lg:max-w-4xl w-full">
+        <div className="fixed inset-0 bg-black bg-opacity-65 flex justify-center items-center p-4">
+            <div className="bg-white p-7 rounded-lg lg:max-w-4xl w-full max-h-full overflow-y-auto">
                 <X className="cursor-pointer float-right text-primary h-9 w-9" onClick={onClose} />
                 <h2 className="text-xl font-bold mb-4">{gig.name}</h2>
                 <Separator />
@@ -27,11 +27,11 @@ export default function GigDetailModal({ gig, onClose }: GigDetailModalProps) {
                         </tr>
                         <tr>
                             <td className="font-bold uppercase">Tags:</td>
-                            <td>{gig.tags.length > 0 ? gig.tags.map(tag => <Badge key={tag.id}>{tag.name}</Badge>) : 'No tags'}</td>
+                            <td className='lg:flex lg:space-x-3 lg:space-y-0 space-y-2'>{gig.tags.length > 0 ? gig.tags.map(tag => <Badge key={tag.id}>{tag.name}</Badge>) : 'No tags'}</td>
                         </tr>
                         <tr>
                             <td className="font-bold uppercase">Categories:</td>
-                            <td>{gig.categories.length > 0 ? gig.categories.map(category => <Badge key={category.id}>{category.name}</Badge>) : 'No categories'}</td>
+                            <td className='lg:flex lg:space-x-3 lg:space-y-0 space-y-2'>{gig.categories.length > 0 ? gig.categories.map(category => <Badge key={category.id}>{category.name}</Badge>) : 'No categories'}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -51,4 +51,4 @@ export default function GigDetailModal({ gig, onClose }: GigDetailModalProps) {
             </div>
         </div>
     );
-};
+}
