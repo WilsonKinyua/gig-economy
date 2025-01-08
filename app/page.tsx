@@ -1,12 +1,14 @@
 "use client"
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import GigDetailModal from '../components/GigDetailModal';
 import { getAllGigs } from '@/lib/fetchers';
 import { Gig } from '@/lib/types';
 import { Loader } from 'lucide-react';
 
 export default function Home() {
-  const [gigs, setGigs] = useState([]);
+  const [gigs, setGigs] = useState<Gig[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedGigDetails, setSelectedGigDetails] = useState<Gig | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -16,7 +18,6 @@ export default function Home() {
     }
     fetchData();
   }, []);
-
 
   return (
     <div className="container mx-auto p-4">
@@ -40,7 +41,7 @@ export default function Home() {
               </thead>
               <tbody>
                 {gigs.map((gig: Gig) => (
-                  <tr key={gig.id}>
+                  <tr key={gig.id} onClick={() => setSelectedGigDetails(gig)}>
                     <td className="py-2 px-4 border-b">{gig.name}</td>
                     <td className="py-2 px-4 border-b">{Number(gig.gigpricingplans[0].price_).toLocaleString('en-US', { style: 'currency', currency: 'KES' })}</td>
                     <td className="py-2 px-4 border-b">{gig.user.username}</td>
@@ -51,6 +52,7 @@ export default function Home() {
           </div>
         )}
       </div>
+      {selectedGigDetails && <GigDetailModal gig={selectedGigDetails} onClose={() => setSelectedGigDetails(null)} />}
     </div>
   );
 }
