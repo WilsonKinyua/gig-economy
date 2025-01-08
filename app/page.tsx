@@ -77,7 +77,7 @@ export default function Home() {
                   ))
                     : (
                       <tr>
-                        <td colSpan={3} className="py-6 px-4 border-b border-r border-l text-center text-red-500">No gigs found!</td>
+                        <td colSpan={4} className="py-6 px-4 border-b border-r border-l text-center text-red-500 uppercase">No gigs found!</td>
                       </tr>
                     )
                   }
