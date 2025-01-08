@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 import GigDetailModal from '@/components/GigDetailModal';
 import { getAllGigs } from '@/lib/fetchers';
 import { Gig } from '@/lib/types';
-import { ChevronLeft, ChevronRight, Loader } from 'lucide-react';
-import Card from '@/components/ui/Card';
+import { ArrowRight, ChevronLeft, ChevronRight, Loader } from 'lucide-react';
+import Image from 'next/image';
+import Badge from '@/components/ui/Badge';
 
 export default function Home() {
   const [gigs, setGigs] = useState<Gig[]>([]);
@@ -44,45 +45,47 @@ export default function Home() {
             />
           </div>
         ) : (
-          <Card>
+          <div>
             <input
               type="search"
               placeholder="Search by title..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="mb-4 p-2 border rounded focus:outline-none focus:ring focus:border-gray-300"
+              className="mb-4 p-2 border rounded-lg focus:outline-none focus:ring-0 h-14 focus:border-gray-300 w-full"
             />
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-white rounded-lg">
-                <thead className='uppercase bg-primary text-white'>
-                  <tr>
-                    <th>#</th>
-                    <th className="py-2 px-4 border-b border-r border-l">Title</th>
-                    <th className="py-2 px-4 border-b border-r border-l">Price<span className='text-xs'>(s)</span></th>
-                    <th className="py-2 px-4 border-b border-r border-l">User Name</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {currentGigsView.length > 0 ? currentGigsView.map((gig: Gig, index) => (
-                    <tr key={gig.id} onClick={() => setSelectedGigDetails(gig)} className='hover:cursor-pointer hover:bg-gray-100 transition duration-500'>
-                      <td className="py-2 px-4 border-b border-r border-l">{index + 1}</td>
-                      <td className="py-2 px-4 border-b border-r border-l">{gig.name}</td>
-                      <td className="py-2 px-4 border-b border-r border-l">
-                        {gig.gigpricingplans.map(plan => (
-                          <div key={plan.id}>{Number(plan.price_).toLocaleString('en-US', { style: 'currency', currency: 'KES' })}</div>
-                        ))}
-                      </td>
-                      <td className="py-2 px-4 border-b border-r border-l">{gig.user.username}</td>
-                    </tr>
-                  ))
-                    : (
-                      <tr>
-                        <td colSpan={4} className="py-6 px-4 border-b border-r border-l text-center text-red-500 uppercase">No gigs found!</td>
-                      </tr>
-                    )
-                  }
-                </tbody>
-              </table>
+            <div className="grid grid-cols-1 gap-4">
+              {currentGigsView.length > 0 ? currentGigsView.map((gig: Gig) => (
+                <div key={gig.id} onClick={() => setSelectedGigDetails(gig)} className="border-2 rounded-xl p-4 hover:cursor-pointer hover:bg-gray-100 transition duration-500 hover:border-primary hover:border-2 hover:border-l-8 group">
+                  <div className='flex items-center space-x-5 mb-4'>
+                    <Image
+                      src={'/1.png'}
+                      alt={gig.name}
+                      width={200}
+                      height={200}
+                      className='w-14 h-14 object-contain'
+                    />
+                    <div>
+                      <h3 className="text-xl font-bold mb-2">{gig.name}</h3>
+                      <h4 className="text-gray-600 font-semibold">By <span className="uppercase">{gig.user.username}</span></h4>
+                    </div>
+                  </div>
+                  <div className='lg:flex lg:justify-between lg:items-center'>
+                    <div className="mb-2 flex items-center space-x-2">
+                      <p className='font-bold'>Price: </p>
+                      {gig.gigpricingplans.map(plan => (
+                        <Badge key={plan.id}>{Number(plan.price_).toLocaleString('en-US', { style: 'currency', currency: 'KES' })}</Badge>
+                      ))}
+                    </div>
+                    <div className='font-bold text-primary hidden group-hover:block'>
+                      <div className='flex items-center space-x-2'><span>View details</span> <ArrowRight /></div>
+                    </div>
+                  </div>
+                </div>
+              )) : (
+                <div className="col-span-full text-center text-red-500 uppercase py-6">
+                  No gigs found!
+                </div>
+              )}
             </div>
             <div className="flex justify-between mt-4">
               <button
@@ -106,7 +109,7 @@ export default function Home() {
                 <span>Next</span> <ChevronRight />
               </button>
             </div>
-          </Card>
+          </div>
         )}
       </div>
       {selectedGigDetails && <GigDetailModal gig={selectedGigDetails} onClose={() => setSelectedGigDetails(null)} />}
