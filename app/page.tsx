@@ -57,7 +57,7 @@ export default function Home() {
                   </thead>
                   <tbody>
                     {filteredGigsBySearch.map((gig: Gig) => (
-                      <tr key={gig.id} onClick={() => setSelectedGigDetails(gig)}>
+                      <tr key={gig.id} onClick={() => setSelectedGigDetails(gig)} className='hover:cursor-pointer hover:bg-gray-100 transition duration-500'>
                         <td className="py-2 px-4 border-b">{gig.name}</td>
                         <td className="py-2 px-4 border-b">{Number(gig.gigpricingplans[0].price_).toLocaleString('en-US', { style: 'currency', currency: 'KES' })}</td>
                         <td className="py-2 px-4 border-b">{gig.user.username}</td>
