@@ -48,7 +48,7 @@ export default function Home() {
           <div>
             <input
               type="search"
-              placeholder="Search by title..."
+              placeholder="Search for a gig by title..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="mb-4 p-2 border rounded-lg focus:outline-none focus:ring-0 h-14 focus:border-gray-300 w-full"
@@ -82,7 +82,7 @@ export default function Home() {
                   </div>
                 </div>
               )) : (
-                <div className="col-span-full text-center text-red-500 uppercase py-6">
+                <div className="col-span-full text-center bg-red-500 text-white rounded-xl font-bold py-6">
                   No gigs found!
                 </div>
               )}
