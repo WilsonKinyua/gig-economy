@@ -1,3 +1,4 @@
+'use server';
 import axios from 'axios';
 
 // Fetch all gigs
@@ -7,7 +8,7 @@ export async function getAllGigs() {
       'https://joinstartup.africa/api/v1/gigs?with=tags,user,mediafiles,faqs,categories,gigpricingplans,gigaddons'
     );
     return response.data;
-  } catch (error) {
+  } catch {
     throw new Error('Failed to fetch gigs. Please try again later.');
   }
 }
