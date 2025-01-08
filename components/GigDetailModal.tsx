@@ -20,7 +20,7 @@ export default function GigDetailModal({ gig, onClose }: GigDetailModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            // onClick={onClose}
         >
             <motion.div
                 className="bg-white p-7 rounded-lg lg:max-w-4xl w-full max-h-full overflow-y-auto"

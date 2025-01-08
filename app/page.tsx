@@ -56,7 +56,7 @@ export default function Home() {
               <table className="min-w-full bg-white rounded-lg">
                 <thead className='uppercase bg-primary text-white'>
                   <tr>
-                    <th></th>
+                    <th>#</th>
                     <th className="py-2 px-4 border-b border-r border-l">Title</th>
                     <th className="py-2 px-4 border-b border-r border-l">Price<span className='text-xs'>(s)</span></th>
                     <th className="py-2 px-4 border-b border-r border-l">User Name</th>
