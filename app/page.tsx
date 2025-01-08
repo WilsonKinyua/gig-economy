@@ -76,7 +76,7 @@ export default function Home() {
                         <Badge key={plan.id}>{Number(plan.price_).toLocaleString('en-US', { style: 'currency', currency: 'KES' })}</Badge>
                       ))}
                     </div>
-                    <div className='font-bold text-primary hidden group-hover:block'>
+                    <div className='font-bold text-primary hidden lg:group-hover:block'>
                       <div className='flex items-center space-x-2'><span>View details</span> <ArrowRight /></div>
                     </div>
                   </div>
