@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import GigDetailModal from '../components/GigDetailModal';
+import GigDetailModal from '@/components/GigDetailModal';
 import { getAllGigs } from '@/lib/fetchers';
 import { Gig } from '@/lib/types';
 import { Loader } from 'lucide-react';
