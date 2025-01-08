@@ -33,7 +33,7 @@ interface Gigpricingplan {
   customdiscount: string;
   standarddiscount: string;
   status: string;
-  deliverables: any[];
+  deliverables: [];
 }
 
 export interface Mediafile {
@@ -53,7 +53,8 @@ export interface Faq {
   id: string;
 }
 
-export interface Gig { // Gig type details
+export interface Gig {
+  // Gig type details
   id: string;
   name: string;
   slug: string;

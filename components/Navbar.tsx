@@ -12,6 +12,7 @@ export default function Navbar() {
                 </div>
                 <div className="hidden md:flex space-x-10 text-lg items-center">
                     <Link href="#">Home</Link>
+                    <Link href="#">Gigs</Link>
                     <Link href="#">About Us</Link>
                     <Link href="#">Services</Link>
                     <Link href="#">Contact</Link>

@@ -5,7 +5,6 @@ import { getAllGigs } from '@/lib/fetchers';
 import { Gig } from '@/lib/types';
 import { ChevronLeft, ChevronRight, Loader } from 'lucide-react';
 import Card from '@/components/ui/Card';
-import Navbar from '@/components/Navbar';
 
 export default function Home() {
   const [gigs, setGigs] = useState<Gig[]>([]);
@@ -57,19 +56,31 @@ export default function Home() {
               <table className="min-w-full bg-white rounded-lg">
                 <thead className='uppercase bg-primary text-white'>
                   <tr>
+                    <th></th>
                     <th className="py-2 px-4 border-b border-r border-l">Title</th>
-                    <th className="py-2 px-4 border-b border-r border-l">Price</th>
+                    <th className="py-2 px-4 border-b border-r border-l">Price<span className='text-xs'>(s)</span></th>
                     <th className="py-2 px-4 border-b border-r border-l">User Name</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {currentGigsView.map((gig: Gig) => (
+                  {currentGigsView.length > 0 ? currentGigsView.map((gig: Gig, index) => (
                     <tr key={gig.id} onClick={() => setSelectedGigDetails(gig)} className='hover:cursor-pointer hover:bg-gray-100 transition duration-500'>
+                      <td className="py-2 px-4 border-b border-r border-l">{index + 1}</td>
                       <td className="py-2 px-4 border-b border-r border-l">{gig.name}</td>
-                      <td className="py-2 px-4 border-b border-r border-l">{Number(gig.gigpricingplans[0].price_).toLocaleString('en-US', { style: 'currency', currency: 'KES' })}</td>
+                      <td className="py-2 px-4 border-b border-r border-l">
+                        {gig.gigpricingplans.map(plan => (
+                          <div key={plan.id}>{Number(plan.price_).toLocaleString('en-US', { style: 'currency', currency: 'KES' })}</div>
+                        ))}
+                      </td>
                       <td className="py-2 px-4 border-b border-r border-l">{gig.user.username}</td>
                     </tr>
-                  ))}
+                  ))
+                    : (
+                      <tr>
+                        <td colSpan={3} className="py-6 px-4 border-b border-r border-l text-center text-red-500">No gigs found!</td>
+                      </tr>
+                    )
+                  }
                 </tbody>
               </table>
             </div>
@@ -81,7 +92,12 @@ export default function Home() {
               >
                 <ChevronLeft /> <span>Previous</span>
               </button>
-              <span>Page {currentPage} of {totalPages}</span>
+              <div className='text-center'>
+                <p>Page {currentPage} of {totalPages}</p>
+                <p>
+                  Showing {currentPage === totalPages ? filteredGigsBySearch.length : currentPage * itemsPerPage} of {filteredGigsBySearch.length} results
+                </p>
+              </div>
               <button
                 onClick={() => handleChangeOfAPage(currentPage + 1)}
                 disabled={currentPage === totalPages}

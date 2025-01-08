@@ -39,11 +39,11 @@ export default function GigDetailModal({ gig, onClose }: GigDetailModalProps) {
                         </tr>
                         <tr>
                             <td className="font-bold uppercase">Tags:</td>
-                            <td className='lg:flex lg:space-x-3 lg:space-y-0 space-y-2'>{gig.tags.length > 0 ? gig.tags.map(tag => <Badge key={tag.id}>{tag.name}</Badge>) : 'No tags'}</td>
+                            <td className='lg:flex lg:space-x-3 lg:space-y-0 space-y-2'>{gig.tags.length > 0 ? gig.tags.map(tag => <Badge key={tag.id}>{tag.name}</Badge>) : '-'}</td>
                         </tr>
                         <tr>
                             <td className="font-bold uppercase">Categories:</td>
-                            <td className='lg:flex lg:space-x-3 lg:space-y-0 space-y-2'>{gig.categories.length > 0 ? gig.categories.map(category => <Badge key={category.id}>{category.name}</Badge>) : 'No categories'}</td>
+                            <td className='lg:flex lg:space-x-3 lg:space-y-0 space-y-2'>{gig.categories.length > 0 ? gig.categories.map(category => <Badge key={category.id}>{category.name}</Badge>) : '-'}</td>
                         </tr>
                     </tbody>
                 </table>
